@@ -124,9 +124,9 @@ namespace excel2kli
                         sade = Convert.ToDecimal(rivi.Cells[sarakeNro++].Value),
                         sateily = Convert.ToDecimal(rivi.Cells[sarakeNro++].Value),
                         T_e = Convert.ToDecimal(rivi.Cells[sarakeNro++].Value),
-                        RH_e = Convert.ToDecimal(rivi.Cells[sarakeNro++].Value),
+                        RH_e = ToAbsoluteValueBetween0And1(rivi.Cells[sarakeNro++].Value),
                         T_i = Convert.ToDecimal(rivi.Cells[sarakeNro++].Value),
-                        RH_i = Convert.ToDecimal(rivi.Cells[sarakeNro++].Value),
+                        RH_i = ToAbsoluteValueBetween0And1(rivi.Cells[sarakeNro++].Value),
                     };
                     rivilista.Add(malli);
                 }
@@ -174,7 +174,14 @@ namespace excel2kli
             }
         }
 
-        private void NaytaVirhe(string tekstia)
+       private decimal ToAbsoluteValueBetween0And1(object value)
+       {
+          var inPercent = Convert.ToDecimal(value);
+          var asAbs = inPercent / 100;
+          return Math.Max(0, Math.Min(asAbs, 1));
+       }
+
+       private void NaytaVirhe(string tekstia)
         {
             //
             // Dialog box with exclamation icon.

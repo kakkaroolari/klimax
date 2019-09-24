@@ -19,10 +19,16 @@ namespace excel2kli
 
         public override string ToString()
         {
-            return $"{jarjestysnumero}\t{DCM(sade)}\t{DCM(sateily)}\t{DCM(T_e)}\t{DCM(RH_e)}\t{DCM(T_i)}\t{DCM(RH_i)}";
+            return $"{jarjestysnumero}\t{DCM(sade)}\t{DCM(sateily)}\t{DCM1(T_e)}\t{DCM(RH_e)}\t{DCM1(T_i)}\t{DCM(RH_i)}";
         }
 
-        private string DCM(decimal myvar)
+       private string DCM1(decimal myvar)
+       {
+          //return String.Format("{0:0.##}", myvar, System.Globalization.CultureInfo.InvariantCulture);
+          return myvar.ToString("0.0", System.Globalization.CultureInfo.InvariantCulture);
+       }
+
+      private string DCM(decimal myvar)
         {
             //return String.Format("{0:0.##}", myvar, System.Globalization.CultureInfo.InvariantCulture);
             return myvar.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture);
